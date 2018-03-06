@@ -12,6 +12,10 @@ class App extends Component {
     this.handleSubmitTopic = this.handleSubmitTopic.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.handleDownvote = this.handleDownvote.bind(this);
+
+    this.state = {
+      posts: postData
+    };
   }
 
   handleSubmitTopic = (topic) => {
@@ -23,34 +27,43 @@ class App extends Component {
         "downvote": 0
       }
     );
+    this.setState(() => ({
+      posts: postData
+    }));
   };
 
   handleUpvote = (id) => {
     postData.forEach(function(post){
       if(post.id === id) post.upvote++;
     });
+    this.setState(() => ({
+      posts: postData
+    }));
   };
 
   handleDownvote = (id) => {
     postData.forEach(function(post){
       if(post.id === id) post.downvote++;
     });
+    this.setState(() => ({
+      posts: postData
+    }));
   };
 
   render() {
     return (
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Reddit Clone</h1>
-          </header>
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Reddit Clone</h1>
+        </header>
 
-          <SubmitPost onSubmitPost={this.handleSubmitTopic}/>
-          <PostList
-            posts={postData}
-            onUpvoteClick={this.handleUpvote}
-            onDownvoteClick={this.handleDownvote}
-          />
-        </div>
+        <SubmitPost onSubmitPost={this.handleSubmitTopic}/>
+        <PostList
+          posts={this.state.posts}
+          onUpvoteClick={this.handleUpvote}
+          onDownvoteClick={this.handleDownvote}
+        />
+      </div>
     );
   }
 }

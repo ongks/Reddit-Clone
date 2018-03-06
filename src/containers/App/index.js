@@ -14,6 +14,29 @@ class App extends Component {
     this.handleDownvote = this.handleDownvote.bind(this);
   }
 
+  handleSubmitTopic = (topic) => {
+    postData.push({
+        "key" : postData.length,
+        "id" : postData.length,
+        "title": topic,
+        "upvote": 0,
+        "downvote": 0
+      }
+    );
+  };
+
+  handleUpvote = (id) => {
+    postData.forEach(function(post){
+      if(post.id === id) post.upvote++;
+    });
+  };
+
+  handleDownvote = (id) => {
+    postData.forEach(function(post){
+      if(post.id === id) post.downvote++;
+    });
+  };
+
   render() {
     return (
         <div className="App">

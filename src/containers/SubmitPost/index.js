@@ -13,10 +13,10 @@ class SubmitPost extends Component {
   }
 
   handleChange = (e) => {
-    const topicInput = e.target.value;
-    if (topicInput.length <= 255) {
+    const titleInput = e.target.value;
+    if (titleInput.length <= 255) {
       this.setState({
-        title: topicInput
+        title: titleInput
       });
     }
   };

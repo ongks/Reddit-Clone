@@ -14,13 +14,11 @@
  * */
 
 import Post from './Post';
-import MinHeap from './MinHeap';
 
 class PostData {
   DISPLAY_SIZE = 20;
 
   constructor() {
-    this.minHeap = new MinHeap();
     this.data = [];
     this.hashMap = {};
   }
@@ -57,7 +55,7 @@ class PostData {
    */
   bubbleUp(position) {
     if (position <= this.DISPLAY_SIZE) {
-      while(this.data[position].getScore() > this.data[position-1].getScore()){
+      while(position > 0 && this.data[position].getScore() > this.data[position-1].getScore()){
         this.swap(position, position - 1);
         position--;
       }
@@ -88,8 +86,8 @@ class PostData {
    */
   bubbleDown(position) {
     if (position < this.DISPLAY_SIZE) {
-      while (position < this.DISPLAY_SIZE &&
-        this.data[position].getScore() < this.data[position+1].getScore()) {
+      while (position < this.DISPLAY_SIZE && position + 1 < this.data.length &&
+      this.data[position].getScore() < this.data[position+1].getScore()) {
         this.swap(position, position + 1);
         position++;
 
@@ -101,26 +99,29 @@ class PostData {
 
       // while loop iterates through until current position is a leaf
       while (leftIndex < this.data.length) {
-        leftIndex = (position - this.DISPLAY_SIZE) * 2 + 1 + this.DISPLAY_SIZE;
         const leftScore = this.data[leftIndex].getScore();
 
         // if loop continues, left child must exist, so just need verify if right
         // child exists. If it doesn't, set rightScore to lowest possible value
         // by default.
         const rightIndex = leftIndex + 1;
-        let rightScore = Math.MIN_VALUE;
+        let rightScore = Number.MIN_SAFE_INTEGER ;
         if (rightIndex < this.data.length) {
           rightScore = this.data[rightIndex].getScore();
         }
 
         const maxValue = Math.max(leftScore, rightScore,
           this.data[position].getScore());
+
         if(leftScore === maxValue) {
           this.swap(position, leftIndex);
           position = leftIndex;
+          leftIndex = (position - this.DISPLAY_SIZE) * 2 + 1 + this.DISPLAY_SIZE;
+
         } else if (rightScore === maxValue) {
           this.swap(position, rightIndex);
           position = rightIndex;
+
         } else {
           return ;
         }

@@ -1,9 +1,12 @@
-import React from 'react';
+/**
+ * The Post component is the presentational component for each post. It
+ * informs PostList how to render each post.
+ */
 
+import React from 'react';
 import "./index.css";
 
 const Post = ({
-  id,
   title,
   score,
   upvote,

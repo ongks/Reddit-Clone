@@ -33,12 +33,19 @@ Start the server:
 npm start
 ```
 
+Tests can be run via:
+```
+npm test
+```
+
 The local server can be found on http://localhost:3000/
 
 ## Choice of stack
 React.js UI library was chosen as the front end framework. This is because React emphasizes on re-rendering only the components that have changed over time. Thus, for an application that is dynamic and changes constantly with user input, I chose to work with React.
 
 No back end server was implemented. All requests are directly handled on client side. This is based on the assumption that no data persistence is required, and that data can disappear upon application restart.
+
+The test cases are written based on the Jest testing framework.
 
 ## Data structure
 

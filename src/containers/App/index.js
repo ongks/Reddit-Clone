@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
+/**
+ * App is the all-encompassing container that contains both PostList
+ * and SubmitPost containers.
+ *
+ * App instantiates the PostData class which contains information on
+ * all posts. It is the single source of truth and is thus responsible
+ * for maintaining and updating the instance. The PostData instance is
+ * present in App's state.
+ */
 
-import './App.css';
+import React, { Component } from 'react';
 import PostData from '../../helper/PostData';
 import SubmitPost from '../SubmitPost';
 import PostList from '../PostList';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -18,26 +27,26 @@ class App extends Component {
     };
   }
 
-  handleSubmitTitle = (topic) => {
-    this.posts.insertNewPost(topic);
-    this.setState(() => ({
-      posts: this.posts
-    }));
+  handleSubmitTitle = (title) => {
+    this.posts.insertNewPost(title);
+    this.updateState();
   };
 
   handleUpvote = (id) => {
     this.posts.upvote(id);
-    this.setState(() => ({
-      posts: this.posts
-    }));
+    this.updateState();
   };
 
   handleDownvote = (id) => {
     this.posts.downvote(id);
+    this.updateState();
+  };
+
+  updateState() {
     this.setState(() => ({
       posts: this.posts
     }));
-  };
+  }
 
   render() {
     return (

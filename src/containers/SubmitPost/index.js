@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
+import './index.css';
+
 class SubmitPost extends Component {
   constructor(props) {
     super(props);
 
+    this.MAX_TITLE_LENGTH = 255;
     this.state = {
       title: '',
     };
@@ -14,7 +17,7 @@ class SubmitPost extends Component {
 
   handleChange = (e) => {
     const titleInput = e.target.value;
-    if (titleInput.length <= 255) {
+    if (titleInput.length <= this.MAX_TITLE_LENGTH) {
       this.setState({
         title: titleInput
       });
@@ -32,21 +35,30 @@ class SubmitPost extends Component {
   };
 
   render() {
+    let charsLeft = this.MAX_TITLE_LENGTH - this.state.title.length;
     return (
       <div className="SubmitPost">
-        <input
-          type="text"
-          placeholder="Write the title of your post. Maximum character limit is 255."
-          onChange={ this.handleChange }
-          value={ this.state.title }
-          required
-        />
-        <button
-          type="submit"
-          onClick={ this.handleSubmit }
-        >
-          Submit
-        </button>
+        <div className="titleInput">
+          <input
+            type="text"
+            placeholder="Write the title of your post."
+            onChange={ this.handleChange }
+            value={ this.state.title }
+            required
+          />
+          <div className="charsLeft">
+            {charsLeft} / {this.MAX_TITLE_LENGTH} characters left.
+          </div>
+        </div>
+
+        <div>
+          <button className="buttonPanel"
+            type="submit"
+            onClick={ this.handleSubmit }>
+            Submit
+          </button>
+        </div>
+
       </div>
     );
   }

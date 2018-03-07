@@ -11,6 +11,7 @@ class PostList extends Component {
             key={post.id}
             id={post.id}
             title={post.title}
+            score={post.getUpvotes() - post.getDownvotes()}
             upvote={post.getUpvotes()}
             downvote={post.getDownvotes()}
             onUpvoteClick={function() {

@@ -6,13 +6,13 @@ class PostList extends Component {
     const { posts, onUpvoteClick, onDownvoteClick } = this.props;
     return (
       <div className="PostList">
-        { posts.map((post) => (
+        { posts.displayList().map((post) => (
           <Post
             key={post.id}
             id={post.id}
             title={post.title}
-            upvote={post.upvote}
-            downvote={post.downvote}
+            upvote={post.getUpvotes()}
+            downvote={post.getDownvotes()}
             onUpvoteClick={function() {
               onUpvoteClick(post.id);
             }}

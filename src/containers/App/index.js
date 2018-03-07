@@ -1,52 +1,41 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import postData from '../PostData';
+import PostData from '../../helper/PostData';
 import SubmitPost from '../SubmitPost';
 import PostList from '../PostList';
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmitTopic = this.handleSubmitTopic.bind(this);
+    this.posts = new PostData();
+    this.handleSubmitTitle = this.handleSubmitTitle.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.handleDownvote = this.handleDownvote.bind(this);
 
     this.state = {
-      posts: postData
+      posts: this.posts
     };
   }
 
-  handleSubmitTopic = (topic) => {
-    postData.push({
-        "key" : postData.length,
-        "id" : postData.length,
-        "title": topic,
-        "upvote": 0,
-        "downvote": 0
-      }
-    );
+  handleSubmitTitle = (topic) => {
+    this.posts.insertNewPost(topic);
     this.setState(() => ({
-      posts: postData
+      posts: this.posts
     }));
   };
 
   handleUpvote = (id) => {
-    postData.forEach(function(post){
-      if(post.id === id) post.upvote++;
-    });
+    this.posts.upvote(id);
     this.setState(() => ({
-      posts: postData
+      posts: this.posts
     }));
   };
 
   handleDownvote = (id) => {
-    postData.forEach(function(post){
-      if(post.id === id) post.downvote++;
-    });
+    this.posts.downvote(id);
     this.setState(() => ({
-      posts: postData
+      posts: this.posts
     }));
   };
 
@@ -57,7 +46,7 @@ class App extends Component {
           <h1 className="App-title">Reddit Clone</h1>
         </header>
 
-        <SubmitPost onSubmitPost={this.handleSubmitTopic}/>
+        <SubmitPost onSubmitPost={this.handleSubmitTitle}/>
         <PostList
           posts={this.state.posts}
           onUpvoteClick={this.handleUpvote}

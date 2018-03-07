@@ -54,12 +54,13 @@ class PostData {
    * @param position for new or upvoted Post
    */
   bubbleUp(position) {
+    // If post's score is in top 20
     if (position <= this.DISPLAY_SIZE) {
       while(position > 0 && this.data[position].getScore() > this.data[position-1].getScore()){
         this.swap(position, position - 1);
         position--;
       }
-    } else {
+    } else {     // Post's rank is below 20 and is in the heap
       while (position > this.DISPLAY_SIZE) {
         const parentIndex = Math.floor((position - this.DISPLAY_SIZE + 1) / 2)
           - 1 + this.DISPLAY_SIZE;
@@ -85,19 +86,22 @@ class PostData {
    * @param position for downvoted Post
    */
   bubbleDown(position) {
+    // If post's score is in the top 20
     if (position < this.DISPLAY_SIZE) {
       while (position < this.DISPLAY_SIZE && position + 1 < this.data.length &&
       this.data[position].getScore() < this.data[position+1].getScore()) {
         this.swap(position, position + 1);
         position++;
 
+        // When bubble down reaches the end of the top 20 array, need to compare
+        // with the root of heap to see if it should go down further.
         if (position === this.DISPLAY_SIZE) this.bubbleDown(position);
       }
-    } else {
+    } else {    // Post below 20th rank, and will now do heap bubbleDown
       let leftIndex = (position - this.DISPLAY_SIZE) * 2 +
         1 + this.DISPLAY_SIZE;
 
-      // while loop iterates through until current position is a leaf
+      // while loop iterates until current position is a leaf in the heap
       while (leftIndex < this.data.length) {
         const leftScore = this.data[leftIndex].getScore();
 
@@ -130,14 +134,14 @@ class PostData {
   }
 
   swap(position1, position2) {
-    // Swap position value in hashMap
     const Post1 = this.data[position1];
     const Post2 = this.data[position2];
+
+    // Swap position value in hashMap
     this.hashMap[Post2.getId()] = position1;
     this.hashMap[Post1.getId()] = position2;
 
     // Swap posts in data array
-    // let temp = currentPost;
     this.data[position1] = Post2;
     this.data[position2] = Post1;
   }

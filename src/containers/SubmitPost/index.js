@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+/**
+ * SubmitPost container renders the submission form, and handles user input
+ * as well as the submit button function.
+ */
 
+import React, { Component } from 'react';
 import './index.css';
 
 class SubmitPost extends Component {
+  MAX_TITLE_LENGTH = 255;
   constructor(props) {
     super(props);
-
-    this.MAX_TITLE_LENGTH = 255;
     this.state = {
       title: '',
     };
@@ -26,9 +29,7 @@ class SubmitPost extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.props.onSubmitPost(this.state.title);
-
     this.setState({
       title: ''
     });

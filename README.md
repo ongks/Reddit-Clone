@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), including the ./public folder. All other files in ./src are self-written.
 
-A sample deployment of the application can be found [here]().
+A sample deployment of the application can be found [here](https://reddit-clone-ongks.herokuapp.com/).
 
 ## Table of Contents
 - [Features](#features)

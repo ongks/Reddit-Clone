@@ -35,6 +35,10 @@ class SubmitPost extends Component {
     });
   };
 
+  isValid(title) {
+    return title.length > 0 && title.length <= this.MAX_TITLE_LENGTH;
+  }
+
   render() {
     let charsLeft = this.MAX_TITLE_LENGTH - this.state.title.length;
     return (
@@ -53,8 +57,10 @@ class SubmitPost extends Component {
         </div>
 
         <div>
-          <button className="buttonPanel"
+          <button
+            className="buttonPanel"
             type="submit"
+            disabled={!this.isValid(this.state.title)}
             onClick={ this.handleSubmit }>
             Submit
           </button>

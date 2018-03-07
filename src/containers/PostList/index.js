@@ -1,3 +1,8 @@
+/**
+ * PostList handles the rendering of the list of posts passed down
+ * from App. It also handles the upvote & downvote button function.
+ */
+
 import React, { Component } from 'react';
 import Post from '../../components/Post';
 

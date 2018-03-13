@@ -6,7 +6,7 @@
 import React from 'react';
 import "./index.css";
 
-const Post = ({
+const PostView = ({
   title,
   score,
   upvote,
@@ -15,7 +15,7 @@ const Post = ({
   onDownvoteClick
 }) => {
   return (
-    <div className="post">
+    <div className="postView">
       <div className="leftPanel">
         <div className="upvoteButton" onClick={onUpvoteClick} />
         <div className="score">{score}</div>
@@ -30,4 +30,4 @@ const Post = ({
 
 };
 
-export default Post;
+export default PostView;

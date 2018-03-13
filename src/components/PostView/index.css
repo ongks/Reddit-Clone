@@ -1,21 +1,21 @@
-.post {
+.postView {
     border-bottom: 1px solid lightgray;
     display: flex;
     min-height: 100px;
 }
 
-.post:first-child {
+.postView:first-child {
     border-top: 1px solid lightgray;
 }
 
-.post .leftPanel {
+.postView .leftPanel {
     display: flex;
     flex-direction: column;
     min-width: 40px;
     margin: 10px;
 }
 
-.post .upvoteButton {
+.postView .upvoteButton {
     background: url('./up.svg') no-repeat center;
     cursor: pointer;
     display: inline-block;
@@ -23,7 +23,7 @@
     vertical-align: middle;
 }
 
-.post .downvoteButton {
+.postView .downvoteButton {
     background: url('./down.svg') no-repeat center;
     background-size: contain;
     cursor: pointer;
@@ -32,20 +32,20 @@
     vertical-align: middle;
 }
 
-.post .rightPanel {
+.postView .rightPanel {
     align-items: left;
     margin: 15px 15px 15px 15px;
     text-align: left;
 }
 
-.post .title {
+.postView .title {
     margin-bottom: 10px;
     font-size: 1.5em;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
 
-.post .votes {
+.postView .votes {
     padding-top: 10px;
     font-size: 1em;
 }

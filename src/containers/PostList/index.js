@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import Post from '../../components/Post';
+import PostView from '../../components/PostView';
 
 class PostList extends Component {
   render() {
@@ -12,7 +12,7 @@ class PostList extends Component {
     return (
       <div className="PostList">
         { posts.displayList().map((post) => (
-          <Post
+          <PostView
             key={post.id}
             id={post.id}
             title={post.title}

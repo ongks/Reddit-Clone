@@ -90,6 +90,7 @@ describe('PostData upvote', () => {
     postData.downvote(i);
     postData.downvote(i);
   }
+  //Set up postData array as {1, 1, 1, ...., 1, -1, -1, -1, ..., -1}
 
   it('should upvote post at index 0 correctly', () => {
     postData.upvote(0);
@@ -124,6 +125,9 @@ describe('PostData upvote', () => {
 
 /**
  * Tests for downvote operation:
+ * We only track the specific locations of the updated posts if they
+ * are still within the top 20 array, otherwise just check that they
+ * have correctly descended down the heap.
  * 1. Post is in top 20 array:
  *    1a. Post is in index 0
  *    1b. Post is in index 10
@@ -142,6 +146,7 @@ describe('PostData downvote', () => {
     postData.downvote(i);
     postData.downvote(i);
   }
+  //Set up postData array as {1, 1, 1, ...., 1, -1, -1, -1, ..., -1}
 
   it('should downvote post at index 0 correctly', () => {
     postData.downvote(0);
